@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="static/styles/main.css">
+</head>
+
+<body>
+    <ul>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">File</a>
+            <div class="dropdown-content">
+                <a onclick="openFile()">Open File</a>
+                <a onclick="newFile()">New File</a>
+                <a onclick="saveFile()">Save</a>
+                <a onclick="renameFile()">Rename File (F2)</a>
+                <!-- <a onclick="doOpenPreferences()">Preferences</a> -->
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Edit</a>
+            <div class="dropdown-content">
+                <a onclick="doUndo()">Undo (Ctrl + Z)</a>
+                <a onclick="doRedo()">Redo (Ctrl + Y)</a>
+            </div>
+        </li>
+        <li class="dropdown branding">
+            <a class="dropbtn">Luna</a>
+            <div class="dropdown-content">
+                <a>Version 0.1a</a>
+                <a id="monacoversion"></a>
+                <a href="https://github.com/nanna7077/">Created by Nannan</a>
+            </div>
+        </li>
+    </ul>
+    <div class="tabs" id="tabdisplay"></div>
+    <div class="dialog" id="renameDialog" style="display: none;">
+        <div class="dialog-title">Rename File</div>
+        <input class="textInput" id="renameDialogNewFilename">
+        <br>
+        <button class="button" onclick="triggerFileRenameFromDialog()">Rename</button>
+        <button class="button" onclick="hideDiv('renameDialog')">Close</button>
+    </div>
+    <div class="editor-container"></div>
+    <div id="statusBar">
+
+    </div>
+</body>
+
+<script type="text/javascript" src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="static/js/filetypes.js"></script>
+<script src="static/js/theme.js"></script>
+<script src="static/js/main.js"></script>
+<script>
+    var lunaIntroText = `
+
+
+██╗     ██╗   ██╗███╗   ██╗ █████╗ 
+██║     ██║   ██║████╗  ██║██╔══██╗
+██║     ██║   ██║██╔██╗ ██║███████║
+██║     ██║   ██║██║╚██╗██║██╔══██║
+███████╗╚██████╔╝██║ ╚████║██║  ██║
+╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝
+                                   
+
+Yet another web based code editor cos' why not?
+`;
+    require.config({
+        paths: {
+            'vs': 'https://unpkg.com/monaco-editor@latest/min/vs'
+        }
+    });
+    window.MonacoEnvironment = {
+            getWorkerUrl: function(workerId, label) {
+                    return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+        self.MonacoEnvironment = {
+          baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+        };
+        importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');`
+      )}`;
+    }
+  };
+
+  require(["vs/editor/editor.main"], function () {
+    monaco.editor.defineTheme('lunatheme', lunatheme)
+    document.editor=monaco.editor.create(document.querySelector('.editor-container'), {
+      value: lunaIntroText,
+      theme: 'lunatheme',
+      automaticLayout: true,
+    });
+    loadConfig();
+  });
+</script>
+<script src="static/js/keyboardShortcuts.js"></script>
+
+</html>
