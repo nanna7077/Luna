@@ -116,7 +116,7 @@ function saveFile() {
     saveanchor.click();
 }
 
-function doRenameFile() {
+function renameFile() {
     if (currentTab === -1) {
         Toastify({
             text: "Open a file first.",
