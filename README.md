@@ -13,6 +13,10 @@ Found a bug? [Report it here](https://github.com/nanna7077/Luna/issues/new?assig
 
 Want to work on Luna? Find an issue from [issues](https://github.com/nanna7077/Luna/issues) and ask there to get assigned.
 
+### Features
+
+- Open File from Link
+
 ### Screenshots
 
 ![](https://github.com/nanna7077/Luna/blob/main/images/1.png?raw=true)
