@@ -3,6 +3,7 @@
 :root {
     --foreground-main: #f5f5f5;
     --background-main: rgb(0, 0, 0);
+    --background-semiclear: rgba(0, 0, 0, 0.8);
     --foreground-secondary: #c074d6;
     --major-font: 'Open Sans', sans-serif;
     --code-font: 'Inconsolata', monospace;
@@ -167,4 +168,8 @@ li.dropdown {
     width: 101%;
     height: 2.5vh;
     background: var(--background-main);
+}
+
+hr {
+    border-top: 1px solid var(--foreground-main);
 }

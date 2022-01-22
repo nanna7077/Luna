@@ -14,9 +14,10 @@
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">File</a>
             <div class="dropdown-content">
-                <a onclick="openFile()">Open File</a>
+                <a onclick="openFile()">Open File(s)</a>
                 <a onclick="openFileFromLink()">Open File from Link</a>
                 <a onclick="newFile()">New File</a>
+                <hr>
                 <a onclick="saveFile()">Save</a>
                 <a onclick="renameFile()">Rename File (F2)</a>
                 <!-- <a onclick="doOpenPreferences()">Preferences</a> -->
@@ -34,7 +35,7 @@
             <div class="dropdown-content">
                 <a>Version 0.1a</a>
                 <a id="monacoversion"></a>
-                <a href="https://github.com/nanna7077/Luna">View Github Repo</a>
+                <a href="https://github.com/nanna7077/Luna" target="_blank">View Github Repo</a>
             </div>
         </li>
     </ul>
@@ -62,8 +63,9 @@
 <script type="text/javascript" src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="static/js/filetypes.js"></script>
-<script src="static/js/theme.js"></script>
+<script src="static/js/themes.js"></script>
 <script src="static/js/main.js"></script>
+<script src="static/js/dragdrop.js"></script>
 <script>
     var lunaIntroText = `
 

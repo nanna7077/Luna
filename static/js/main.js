@@ -129,6 +129,7 @@ function triggerFileOpenFromLinkFromDialog() {
             }).showToast();
             console.log("Open from link, fetch error: ", error)
         })
+    document.getElementById("fileFromLinkText").value = '';
     document.getElementById("openFromLinkDialog").style.display = 'none';
 }
 
