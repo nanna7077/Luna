@@ -15,6 +15,7 @@
             <a href="javascript:void(0)" class="dropbtn">File</a>
             <div class="dropdown-content">
                 <a onclick="openFile()">Open File</a>
+                <a onclick="openFileFromLink()">Open File from Link</a>
                 <a onclick="newFile()">New File</a>
                 <a onclick="saveFile()">Save</a>
                 <a onclick="renameFile()">Rename File (F2)</a>
@@ -33,17 +34,24 @@
             <div class="dropdown-content">
                 <a>Version 0.1a</a>
                 <a id="monacoversion"></a>
-                <a href="https://github.com/nanna7077/Luna" target="_blank">View Github Repo</a>
+                <a href="https://github.com/nanna7077/Luna">View Github Repo</a>
             </div>
         </li>
     </ul>
     <div class="tabs" id="tabdisplay"></div>
     <div class="dialog" id="renameDialog" style="display: none;">
         <div class="dialog-title">Rename File</div>
-        <input class="textInput" id="renameDialogNewFilename">
+        <input class="textInput" id="renameDialogNewFilename" autocomplete="off">
         <br>
         <button class="button" onclick="triggerFileRenameFromDialog()">Rename</button>
         <button class="button" onclick="hideDiv('renameDialog')">Close</button>
+    </div>
+    <div class="dialog" id="openFromLinkDialog" style="display: none;">
+        <div class="dialog-title">Open File from link</div>
+        <input class="textInput" id="fileFromLinkText" autocomplete="off">
+        <br>
+        <button class="button" onclick="triggerFileOpenFromLinkFromDialog()">Open</button>
+        <button class="button" onclick="hideDiv('openFromLinkDialog')">Close</button>
     </div>
     <div class="editor-container"></div>
     <div id="statusBar">

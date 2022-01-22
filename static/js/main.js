@@ -81,11 +81,55 @@ function openFile() {
                 document.editor.setValue(x);
                 currentTabs.push({ 'content': x, 'name': file.name })
                 currentTab = currentTabs.length - 1;
-                loadTabChanges()
+                loadTabChanges();
             });
         }
     }
     fileselector.click();
+}
+
+function openFileFromLink() {
+    document.getElementById("openFromLinkDialog").style.display = 'block';
+}
+
+function triggerFileOpenFromLinkFromDialog() {
+    if (document.getElementById("fileFromLinkText").value.length === 0) {
+        Toastify({
+            text: "Link cannot be empty",
+            duration: 3000,
+            position: "center",
+            style: {
+                background: "#ff0033"
+            }
+        }).showToast();
+        return;
+    }
+    fetch(document.getElementById("fileFromLinkText").value).then((response) => {
+            if (response.status === 200) {
+                return response.text();
+            } else {
+                throw new Error('Something went wrong');
+            }
+        })
+        .then((responseText) => {
+            currentTabs.push({ 'content': responseText, 'name': document.getElementById("fileFromLinkText").value.split("/").at(-1) });
+            monaco.editor.setModelLanguage(document.editor.getModel(), getFileType(document.getElementById("fileFromLinkText").value.split("/").at(-1).split(".").at(-1)));
+            document.editor.setValue(responseText);
+            currentTab = currentTabs.length - 1;
+            loadTabChanges();
+        })
+        .catch((error) => {
+            Toastify({
+                text: "Could not fetch from link. " + error,
+                duration: 3000,
+                position: "center",
+                style: {
+                    background: "#ff0033"
+                }
+            }).showToast();
+            console.log("Open from link, fetch error: ", error)
+        })
+    document.getElementById("openFromLinkDialog").style.display = 'none';
 }
 
 function newFile() {

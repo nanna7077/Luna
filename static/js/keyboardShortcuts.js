@@ -11,6 +11,10 @@ window.addEventListener('keyup', function(e) {
         saveFile()
         e.preventDefault();
     }
+    if (e.ctrlKey && e.key === 'w') {
+        closeTab(currentTab)
+        e.preventDefault();
+    }
     if (e.key === 'F2') {
         renameFile()
         e.preventDefault();
