@@ -16,6 +16,7 @@ Want to work on Luna? Find an issue from [issues](https://github.com/nanna7077/L
 ### Features
 
 - Open File from Link
+- Drag and Drop to open files
 
 ### Screenshots
 
