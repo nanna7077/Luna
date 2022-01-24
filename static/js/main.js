@@ -24,6 +24,7 @@ function loadTabChanges(index) {
         }
         c += 1;
     })
+    document.getElementById("tabdisplay").innerHTML += "<div class='tab' onclick='newFile()'> + </div>";
 }
 
 function moveEditorTo(index) {
