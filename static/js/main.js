@@ -240,10 +240,18 @@ function openPreferences() {
 }
 
 function showCategory(category) {
+    [...document.getElementsByClassName('dialogBig-categories-category')].forEach(function(element) { element.classList.remove("selected"); })
     if (category === 'appearance') {
         document.getElementById("category-appearance").classList.add("selected");
         [...document.getElementsByClassName('dialogBig-options')].forEach(function(element) { element.style.display = 'none'; })
         document.getElementById("preferences-appearance-values").style.display = 'inline-block';
+    } else if (category === 'editor') {
+        document.getElementById("category-editor").classList.add("selected");
+        [...document.getElementsByClassName('dialogBig-options')].forEach(function(element) { element.style.display = 'none'; })
+        document.getElementById("preferences-editor-values").style.display = 'inline-block';
+        document.getElementById("preferencesTabSize").value = document.monacoConfig.tabSize;
+    } else {
+        return;
     }
 }
 

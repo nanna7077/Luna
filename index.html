@@ -46,12 +46,19 @@
         <div class="dialogBig-majortext">Preferences</div>
         <div class="dialogBig-categories">
             <div class="dialogBig-categories-category" onclick="showCategory('appearance')" id="category-appearance">Appearance</div>
+            <div class="dialogBig-categories-category" onclick="showCategory('editor')" id="category-editor">Editor</div>
         </div>
         <div class="dialogBig-options" id="preferences-appearance-values">
             <div class="dialogBig-options-option">
                 <div class="dialogBig-options-option-title">Theme</div>
                 <input type="radio" name="colortheme" value="light" onclick="addToConfig('theme', 'lunalight')"> Light
                 <input type="radio" name="colortheme" value="dark" onclick="addToConfig('theme', 'lunadark')"> Dark
+            </div>
+        </div>
+        <div class="dialogBig-options" id="preferences-editor-values">
+            <div class="dialogBig-options-option">
+                <div class="dialogBig-options-option-title">Tab Size</div>
+                <input class="textInput" type="number" min="1" id="preferencesTabSize" onchange="addToMonacoConfig('tabSize', document.getElementById('preferencesTabSize').value)">
             </div>
         </div>
         <button class="button" onclick="hideDiv('preferences')">Close</button>

@@ -203,6 +203,7 @@ hr {
 
 .dialogBig-categories-category {
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .selected {
