@@ -1,17 +1,16 @@
 window.addEventListener('keyup', function(e) {
-    if (e.ctrlKey && e.key === 'o') {
+    if (e.shiftKey && e.key === 'O') {
         openFile()
         e.preventDefault();
     }
-    if (e.ctrlKey && e.key === 'n') {
+    if (e.shiftKey && e.key === 'N') {
         newFile()
-        e.preventDefault();
     }
-    if (e.ctrlKey && e.key === 's') {
+    if (e.shiftKey && e.key === 'S') {
         saveFile()
         e.preventDefault();
     }
-    if (e.ctrlKey && e.key === 'w') {
+    if (e.shiftKey && e.key === 'W') {
         closeTab(currentTab)
         e.preventDefault();
     }

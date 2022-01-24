@@ -142,7 +142,7 @@ li.dropdown {
 .textInput {
     background: none;
     color: var(--foreground-main);
-    font-size: 1.2rem;
+    font-size: .9rem;
     border: 1px solid var(--foreground-main);
     margin-top: 5px;
     margin-bottom: 10px;
@@ -228,4 +228,23 @@ hr {
 .dialogBig-options-option-title {
     font-size: 1.3rem;
     margin-bottom: .5px;
+}
+
+.dialogBig-content {
+    margin-top: 20px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1rem;
+    margin-right: 5px;
+}
+
+kbd {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.1em 0.5em;
+    margin: 0 0.2em;
+    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+    background-color: var(--foreground-main);
+    color: var(--background-main);
 }

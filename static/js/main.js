@@ -36,6 +36,17 @@ function moveEditorTo(index) {
 }
 
 function closeTab(id) {
+    if (id === -1) {
+        Toastify({
+            text: "No tab is open",
+            duration: 3000,
+            position: "center",
+            style: {
+                background: "#ff0033"
+            }
+        }).showToast();
+        return;
+    }
     currentTabs.splice(id, 1);
     currentTab = currentTabs.length - 1;
     if (currentTab === -1) {
@@ -57,7 +68,8 @@ function addToMonacoConfig(key, value) {
         duration: 3000,
         position: "center",
         style: {
-            background: "#00ff00"
+            background: "#00ff00",
+            color: "#000000"
         }
     }).showToast();
 }
