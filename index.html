@@ -20,7 +20,7 @@
                 <hr>
                 <a onclick="saveFile()">Save</a>
                 <a onclick="renameFile()">Rename File (F2)</a>
-                <!-- <a onclick="doOpenPreferences()">Preferences</a> -->
+                <a onclick="openPreferences()">Preferences</a>
             </div>
         </li>
         <li class="dropdown">
@@ -40,6 +40,20 @@
         </li>
     </ul>
     <div class="tabs" id="tabdisplay"></div>
+    <div class="dialogBig" id="preferences">
+        <div class="dialogBig-majortext">Preferences</div>
+        <div class="dialogBig-categories">
+            <div class="dialogBig-categories-category" onclick="showCategory('appearance')" id="category-appearance">Appearance</div>
+        </div>
+        <div class="dialogBig-options" id="preferences-appearance-values">
+            <div class="dialogBig-options-option">
+                <div class="dialogBig-options-option-title">Theme</div>
+                <input type="radio" name="colortheme" value="light" onclick="addToConfig('theme', 'lunalight')"> Light
+                <input type="radio" name="colortheme" value="dark" onclick="addToConfig('theme', 'lunadark')"> Dark
+            </div>
+        </div>
+        <button class="button" onclick="hideDiv('preferences')">Close</button>
+    </div>
     <div class="dialog" id="renameDialog" style="display: none;">
         <div class="dialog-title">Rename File</div>
         <input class="textInput" id="renameDialogNewFilename" autocomplete="off">
@@ -63,8 +77,11 @@
 <script type="text/javascript" src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="static/js/filetypes.js"></script>
-<script src="static/js/themes.js"></script>
 <script src="static/js/main.js"></script>
+<script>
+    loadconfig()
+</script>
+<script src="static/js/themes.js"></script>
 <script src="static/js/dragdrop.js"></script>
 <script>
     var lunaIntroText = `
@@ -103,7 +120,7 @@ Yet another web based code editor cos' why not?
       theme: 'lunatheme',
       automaticLayout: true,
     });
-    loadConfig();
+    loadMonacoConfig();
   });
 </script>
 <script src="static/js/keyboardShortcuts.js"></script>

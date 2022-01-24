@@ -47,19 +47,50 @@ function closeTab(id) {
     loadTabChanges();
 }
 
-function addToConfig(key, value) {
-    docuemnt.config[key] = value;
-    localStorage['config'] = JSON.stringify(config);
-    document.editor.getModel().updateOptions(document.config);
+function addToMonacoConfig(key, value) {
+    document.monacoConfig[key] = value;
+    localStorage['monacoConfig'] = JSON.stringify(document.monacoConfig);
+    document.editor.getModel().updateOptions(document.monacoConfig);
+    Toastify({
+        text: "Please refresh page for changes to take effect.",
+        duration: 3000,
+        position: "center",
+        style: {
+            background: "#00ff00"
+        }
+    }).showToast();
 }
 
-function loadConfig() {
+function loadMonacoConfig() {
+    document.monacoConfig = JSON.parse(localStorage.getItem("monacoConfig"));
+    if (document.monacoConfig === null) {
+        document.monacoConfig = { tabSize: 4 }
+        localStorage['monacoConfig'] = JSON.stringify(document.monacoConfig);
+    }
+    document.editor.getModel().updateOptions(document.monacoConfig);
+}
+
+function addToConfig(key, value) {
+    document.config[key] = value;
+    localStorage['config'] = JSON.stringify(document.config);
+    document.editor.getModel().updateOptions(document.config);
+    Toastify({
+        text: "Please refresh page for changes to take effect.",
+        duration: 3000,
+        position: "center",
+        style: {
+            background: "#00ff00",
+            color: "#000000"
+        }
+    }).showToast();
+}
+
+function loadconfig() {
     document.config = JSON.parse(localStorage.getItem("config"));
     if (document.config === null) {
-        document.config = { tabSize: 4 }
+        document.config = { theme: 'lunadark' }
         localStorage['config'] = JSON.stringify(document.config);
     }
-    document.editor.getModel().updateOptions(document.config);
 }
 
 function doUndo() {
@@ -200,6 +231,19 @@ function displayMonacoVersion() {
     fetch("https://unpkg.com/browse/monaco-editor@0.31.1").then(response => response.text()).then(data => {
         document.getElementById("monacoversion").innerText = "Monaco Version " + data.split("@")[1];
     })
+}
+
+function openPreferences() {
+    document.getElementById("preferences").style.display = 'block';
+    showCategory('appearance');
+}
+
+function showCategory(category) {
+    if (category === 'appearance') {
+        document.getElementById("category-appearance").classList.add("selected");
+        [...document.getElementsByClassName('dialogBig-options')].forEach(function(element) { element.style.display = 'none'; })
+        document.getElementById("preferences-appearance-values").style.display = 'inline-block';
+    }
 }
 
 displayMonacoVersion()
