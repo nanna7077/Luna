@@ -77,7 +77,7 @@ function addToMonacoConfig(key, value) {
 function loadMonacoConfig() {
     document.monacoConfig = JSON.parse(localStorage.getItem("monacoConfig"));
     if (document.monacoConfig === null) {
-        document.monacoConfig = { tabSize: 4 }
+        document.monacoConfig = { tabSize: 4, "bracketPairColorization.enabled": true }
         localStorage['monacoConfig'] = JSON.stringify(document.monacoConfig);
     }
     document.editor.getModel().updateOptions(document.monacoConfig);
@@ -219,6 +219,7 @@ function renameFile() {
     }
     document.getElementById("renameDialog").style.display = 'block';
     document.getElementById("renameDialogNewFilename").value = currentTabs.at(currentTab).name;
+    document.getElementById("renameDialogNewFilename").focus();
 }
 
 function triggerFileRenameFromDialog() {
@@ -234,7 +235,6 @@ function triggerFileRenameFromDialog() {
         return;
     }
     currentTabs.at(currentTab).name = document.getElementById("renameDialogNewFilename").value;
-    console.log(currentTabs.at(currentTab).name)
     monaco.editor.setModelLanguage(document.editor.getModel(), getFileType(currentTabs.at(currentTab).name.split(".").at(-1)))
     loadTabChanges()
     document.getElementById("renameDialog").style.display = 'none';
@@ -262,6 +262,8 @@ function showCategory(category) {
         [...document.getElementsByClassName('dialogBig-options')].forEach(function(element) { element.style.display = 'none'; })
         document.getElementById("preferences-editor-values").style.display = 'inline-block';
         document.getElementById("preferencesTabSize").value = document.monacoConfig.tabSize;
+        document.getElementById("preferencesAutoClosingBrackets").checked = document.monacoConfig.autoClosingBrackets;
+        document.getElementById("preferencesBracketPairColorization").checked = document.monacoConfig[`'bracketPairColorization.enabled'`];
     } else {
         return;
     }

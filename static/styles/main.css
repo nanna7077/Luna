@@ -7,6 +7,8 @@
     --foreground-secondary: #c074d6;
     --major-font: 'Open Sans', sans-serif;
     --code-font: 'Inconsolata', monospace;
+    --major-border-radius: 10px;
+    --minor-border-radius: 4px;
 }
 
 html {
@@ -118,7 +120,7 @@ li.dropdown {
     margin: -8px;
     margin-top: 9px;
     width: calc(100%+1vh);
-    height: 93vh;
+    height: 90vh;
     resize: vertical;
     overflow: auto;
 }
@@ -132,6 +134,7 @@ li.dropdown {
     padding: 1% 1% 1% 1%;
     top: 25%;
     left: 38%;
+    border-radius: var(--major-border-radius);
 }
 
 .dialog-title {
@@ -146,6 +149,7 @@ li.dropdown {
     border: 1px solid var(--foreground-main);
     margin-top: 5px;
     margin-bottom: 10px;
+    border-radius: var(--minor-border-radius);
 }
 
 .button {
@@ -155,6 +159,7 @@ li.dropdown {
     border: 1px solid var(--foreground-main);
     font-size: 1.1rem;
     cursor: pointer;
+    border-radius: var(--minor-border-radius);
 }
 
 .button:hover {
@@ -166,7 +171,7 @@ li.dropdown {
     margin: -8px;
     margin-top: 10px;
     width: 101%;
-    height: 2.5vh;
+    height: 2.2vh;
     background: var(--background-main);
 }
 
@@ -186,6 +191,7 @@ hr {
     width: 64%;
     height: 64%;
     display: none;
+    border-radius: var(--major-border-radius);
 }
 
 .dialogBig-majortext {
@@ -247,4 +253,5 @@ kbd {
     box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
     background-color: var(--foreground-main);
     color: var(--background-main);
+    border-radius: var(--minor-border-radius);
 }

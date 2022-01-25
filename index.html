@@ -61,6 +61,14 @@
                 <div class="dialogBig-options-option-title">Tab Size</div>
                 <input class="textInput" type="number" min="1" id="preferencesTabSize" onchange="addToMonacoConfig('tabSize', document.getElementById('preferencesTabSize').value)">
             </div>
+            <div class="dialogBig-options-option">
+                <div class="dialogBig-options-option-title">Auto Closing Brackets</div>
+                <input type="checkbox" id="preferencesAutoClosingBrackets" onchange="addToMonacoConfig('autoClosingBrackets', document.getElementById('preferencesAutoClosingBrackets').checked)">
+            </div>
+            <div class="dialogBig-options-option">
+                <div class="dialogBig-options-option-title">Bracket Pair Colorization</div>
+                <input type="checkbox" id="preferencesBracketPairColorization" onchange="addToMonacoConfig(`'bracketPairColorization.enabled'`, document.getElementById('preferencesBracketPairColorization').checked)">
+            </div>
         </div>
         <button class="button" onclick="hideDiv('preferences')">Close</button>
     </div>
@@ -145,6 +153,8 @@ Yet another web based code editor cos' why not?
       value: lunaIntroText,
       theme: 'lunatheme',
       automaticLayout: true,
+      formatOnPaste: true,
+      formatOnType: true,
     });
     loadMonacoConfig();
   });
