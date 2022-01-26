@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luna</title>
+    <title id='pageTitle'>Luna Editor</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="static/styles/main.css">
 </head>
@@ -14,28 +14,28 @@
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">File</a>
             <div class="dropdown-content">
-                <a onclick="openFile()">Open File(s)</a>
-                <a onclick="openFileFromLink()">Open File from Link</a>
-                <a onclick="newFile()">New File</a>
+                <a onclick="newFile()">New File <span class="smallText">Shift + N</span></a>
                 <hr>
-                <a onclick="saveFile()">Save</a>
-                <a onclick="renameFile()">Rename File (F2)</a>
+                <a onclick="openFile()">Open File(s) <span class="smallText">Shift + O</span></a>
+                <a onclick="openFileFromLink()">Open File from Link</a>
+                <hr>
+                <a onclick="saveFile()">Save <span class="smallText">Shift + S</span></a>
+                <a onclick="renameFile()">Rename File <span class="smallText">F2</span></a>
                 <a onclick="openPreferences()">Preferences</a>
             </div>
         </li>
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">Edit</a>
             <div class="dropdown-content">
-                <a onclick="doUndo()">Undo (Ctrl + Z)</a>
-                <a onclick="doRedo()">Redo (Ctrl + Y)</a>
+                <a onclick="doUndo()">Undo <span class='smallText'>Ctrl + Z</span></a>
+                <a onclick="doRedo()">Redo <span class='smallText'>Ctrl + Y</span></a>
             </div>
         </li>
         <li class="dropdown branding">
             <a class="dropbtn">Luna</a>
             <div class="dropdown-content">
-                <a>Version 0.1a</a>
+                <a href="https://github.com/nanna7077/Luna" target="_blank">Version 0.1a</a>
                 <a id="monacoversion"></a>
-                <a href="https://github.com/nanna7077/Luna" target="_blank">View Github Repo</a>
                 <a onclick="document.getElementById('keyboardShortcuts').style.display='block'">Keyboard Shortcuts</a>
             </div>
         </li>

@@ -255,3 +255,9 @@ kbd {
     color: var(--background-main);
     border-radius: var(--minor-border-radius);
 }
+
+.smallText {
+    font-size: .7rem;
+    margin-left: 4px;
+    float: right;
+}

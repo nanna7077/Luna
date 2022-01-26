@@ -24,6 +24,7 @@ function loadTabChanges(index) {
         }
         c += 1;
     })
+    document.getElementById('pageTitle').innerText = currentTabs[currentTab].name + " - Luna Editor";
     document.getElementById("tabdisplay").innerHTML += "<div class='tab' onclick='newFile()'> + </div>";
 }
 
