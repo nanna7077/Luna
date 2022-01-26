@@ -5,6 +5,34 @@ function hideDiv(id) {
     document.getElementById(id).style.display = 'none';
 }
 
+function loadLastSession() {
+    if (localStorage.getItem('lastsession') !== null) {
+        currentTabs = JSON.parse(localStorage.getItem('lastsession'));
+        if (currentTabs.length !== 0) {
+            currentTab = parseInt(localStorage.getItem('lastsessionOpenTab'));
+            document.editor.setValue(currentTabs.at(currentTab).content);
+            monaco.editor.setModelLanguage(document.editor.getModel(), getFileType(currentTabs.at(currentTab).name.split(".").at(-1)))
+            loadTabChanges(currentTab);
+        } else {
+            currentTab = -1;
+        }
+    }
+}
+
+function saveSession() {
+    localStorage['lastsession'] = JSON.stringify(currentTabs);
+    localStorage['lastsessionOpenTab'] = currentTab;
+}
+
+function clearWorkspace() {
+    currentTabs = [];
+    currentTab = -1;
+    localStorage['lastsession'] = JSON.stringify(currentTab);
+    loadTabChanges();
+    monaco.editor.setModelLanguage(document.editor.getModel(), "")
+    document.editor.setValue(lunaIntroText);
+}
+
 function loadTabChanges(index) {
     document.getElementById("tabdisplay").innerHTML = "";
     var c = 0;
@@ -24,8 +52,13 @@ function loadTabChanges(index) {
         }
         c += 1;
     })
-    document.getElementById('pageTitle').innerText = currentTabs[currentTab].name + " - Luna Editor";
+    if (currentTab !== -1) {
+        document.getElementById('pageTitle').innerText = currentTabs[currentTab].name + " - Luna Editor";
+    } else {
+        document.getElementById('pageTitle').innerText = "Luna Editor";
+    }
     document.getElementById("tabdisplay").innerHTML += "<div class='tab' onclick='newFile()'> + </div>";
+    saveSession();
 }
 
 function moveEditorTo(index) {

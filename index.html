@@ -20,7 +20,11 @@
                 <a onclick="openFileFromLink()">Open File from Link</a>
                 <hr>
                 <a onclick="saveFile()">Save <span class="smallText">Shift + S</span></a>
+                <!-- <a onclick="saveAll()">Save All</a> -->
+                <a onclick="downloadFile()">Download File <span class="smallText">Shift + D</span></a>
+                <hr>
                 <a onclick="renameFile()">Rename File <span class="smallText">F2</span></a>
+                <a onclick="clearWorkspace()">Clear Workspace</a>
                 <a onclick="openPreferences()">Preferences</a>
             </div>
         </li>
@@ -157,6 +161,7 @@ Yet another web based code editor cos' why not?
       formatOnType: true,
     });
     loadMonacoConfig();
+    loadLastSession();
   });
 </script>
 <script src="static/js/keyboardShortcuts.js"></script>
