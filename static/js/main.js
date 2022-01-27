@@ -232,6 +232,22 @@ function saveFile() {
         return;
     }
     currentTabs.at(currentTab).content = document.editor.getValue();
+    saveSession()
+}
+
+function downloadFile() {
+    if (currentTab === -1) {
+        Toastify({
+            text: "Create/Open a file first.",
+            duration: 3000,
+            position: "center",
+            style: {
+                background: "#ff0033"
+            }
+        }).showToast();
+        return;
+    }
+    currentTabs.at(currentTab).content = document.editor.getValue();
     var saveanchor = document.createElement("a");
     var toSave = new Blob([document.editor.getValue()], { type: "text/plain;charset=utf-8" });
     saveanchor.href = URL.createObjectURL(toSave);
