@@ -20,8 +20,9 @@
                 <a onclick="openFileFromLink()">Open File from Link</a>
                 <hr>
                 <a onclick="saveFile()">Save <span class="smallText">Shift + S</span></a>
-                <!-- <a onclick="saveAll()">Save All</a> -->
+                <hr>
                 <a onclick="downloadFile()">Download File <span class="smallText">Shift + D</span></a>
+                <a onclick="downloadWorkspace()">Download Workspace</a>
                 <hr>
                 <a onclick="renameFile()">Rename File <span class="smallText">F2</span></a>
                 <a onclick="clearWorkspace()">Clear Workspace</a>
@@ -85,6 +86,8 @@
             <br><br>
             <kbd>Shift</kbd>+<kbd>S</kbd> - Save Current File
             <br><br>
+            <kbd>Shift</kbd>+<kbd>D</kbd> - Download Current File
+            <br><br>
             <kbd>Shift</kbd>+<kbd>W</kbd> - Close Current File
             <br><br>
             <kbd>F2</kbd> - Rename Current File
@@ -114,6 +117,7 @@
 
 <script type="text/javascript" src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jszip@3.7.1/dist/jszip.min.js"></script>
 <script src="static/js/filetypes.js"></script>
 <script src="static/js/main.js"></script>
 <script>

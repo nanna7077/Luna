@@ -1,3 +1,8 @@
+var JSZip = null;
+require(['static/js/dependencies/jszip.min.js'], function(jszip) {
+    JSZip = jszip;
+})
+
 var currentTabs = [];
 var currentTab = -1;
 
@@ -205,7 +210,6 @@ function triggerFileOpenFromLinkFromDialog() {
                     background: "#ff0033"
                 }
             }).showToast();
-            console.log("Open from link, fetch error: ", error)
         })
     document.getElementById("fileFromLinkText").value = '';
     document.getElementById("openFromLinkDialog").style.display = 'none';
@@ -253,6 +257,22 @@ function downloadFile() {
     saveanchor.href = URL.createObjectURL(toSave);
     saveanchor.download = currentTabs.at(currentTab).name;
     saveanchor.click();
+}
+
+function downloadWorkspace() {
+    var zip = new JSZip();
+    var fname = '';
+    currentTabs.forEach(function(file) {
+        zip.file(file.name, file.content);
+        fname += file.name.replace(" ", '') + "-";
+    })
+    fname = fname.slice(0, fname.length - 1) + ".zip"
+    zip.generateAsync({ type: "blob", compression: "DEFLATE" }).then(function(content) {
+        var saveanchor = document.createElement("a");
+        saveanchor.href = URL.createObjectURL(content);
+        saveanchor.download = fname;
+        saveanchor.click();
+    })
 }
 
 function renameFile() {
