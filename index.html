@@ -51,14 +51,14 @@
     <div class="dialogBig" id="preferences">
         <div class="dialogBig-majortext">Preferences</div>
         <div class="dialogBig-categories">
-            <div class="dialogBig-categories-category" onclick="showCategory('appearance')" id="category-appearance">Appearance</div>
+            <div class="dialogBig-categories-category" onclick="showCategory('general')" id="category-general">General</div>
             <div class="dialogBig-categories-category" onclick="showCategory('editor')" id="category-editor">Editor</div>
         </div>
-        <div class="dialogBig-options" id="preferences-appearance-values">
+        <div class="dialogBig-options" id="preferences-general-values">
             <div class="dialogBig-options-option">
                 <div class="dialogBig-options-option-title">Theme</div>
-                <input type="radio" name="colortheme" value="light" onclick="addToConfig('theme', 'lunalight')"> Light
-                <input type="radio" name="colortheme" value="dark" onclick="addToConfig('theme', 'lunadark')"> Dark
+                <input type="radio" name="colortheme" value="light" onclick="addToConfig('theme', 'lunalight')" id="preferencesThemeLight"> Light
+                <input type="radio" name="colortheme" value="dark" onclick="addToConfig('theme', 'lunadark')" id="preferencesThemeDark"> Dark
             </div>
         </div>
         <div class="dialogBig-options" id="preferences-editor-values">

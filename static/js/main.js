@@ -318,15 +318,20 @@ function displayMonacoVersion() {
 
 function openPreferences() {
     document.getElementById("preferences").style.display = 'block';
-    showCategory('appearance');
+    showCategory('general');
 }
 
 function showCategory(category) {
     [...document.getElementsByClassName('dialogBig-categories-category')].forEach(function(element) { element.classList.remove("selected"); })
-    if (category === 'appearance') {
-        document.getElementById("category-appearance").classList.add("selected");
+    if (category === 'general') {
+        document.getElementById("category-general").classList.add("selected");
         [...document.getElementsByClassName('dialogBig-options')].forEach(function(element) { element.style.display = 'none'; })
-        document.getElementById("preferences-appearance-values").style.display = 'inline-block';
+        document.getElementById("preferences-general-values").style.display = 'inline-block';
+        if (document.config.theme === 'lunadark') {
+            document.getElementById("preferencesThemeDark").checked = true;
+        } else {
+            document.getElementById("preferencesThemeLight").checked = true;
+        }
     } else if (category === 'editor') {
         document.getElementById("category-editor").classList.add("selected");
         [...document.getElementsByClassName('dialogBig-options')].forEach(function(element) { element.style.display = 'none'; })
