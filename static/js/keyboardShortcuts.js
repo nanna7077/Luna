@@ -1,21 +1,21 @@
 window.addEventListener('keydown', function(e) {
-    if (e.shiftKey && e.key === 'O') {
+    if (e.ctrlKey && e.key == 'o') {
         openFile();
         e.preventDefault();
     }
-    if (e.shiftKey && e.key === 'N') {
+    if (e.shiftKey && e.key == 'N') {
         newFile()
         e.preventDefault();
     }
-    if (e.shiftKey && e.key === 'S') {
+    if (e.ctrlKey && e.key == 's') {
         saveFile()
         e.preventDefault();
     }
-    if (e.shiftKey && e.key === 'D') {
+    if (e.ctrlKey && e.key == 'd') {
         downloadFile()
         e.preventDefault();
     }
-    if (e.shiftKey && e.key === 'W') {
+    if (e.shiftKey && e.key == 'W') {
         closeTab(currentTab)
         e.preventDefault();
     }
