@@ -132,8 +132,14 @@ li.dropdown {
     position: absolute;
     z-index: 2;
     padding: 1% 1% 1% 1%;
-    top: 25%;
-    left: 38%;
+    left: 0;
+    right: 0;
+    top: 35vh;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
     border-radius: var(--major-border-radius);
 }
 
