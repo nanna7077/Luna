@@ -1,5 +1,5 @@
 var JSZip = null;
-require(['static/js/dependencies/jszip.min.js'], function(jszip) {
+require(['https://cdn.jsdelivr.net/npm/jszip@3.7.1/dist/jszip.min.js'], function(jszip) {
     JSZip = jszip;
 })
 
