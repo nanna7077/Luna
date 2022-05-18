@@ -80,6 +80,8 @@
     <div class="dialogBig" id="keyboardShortcuts">
         <div class="dialogBig-majortext">Keyboard Shortcuts</div>
         <div class="dialogBig-content">
+            <kbd>F1</kbd> - Open Command Palette
+            <br><br>
             <kbd>Ctrl</kbd>+<kbd>O</kbd> - Open File
             <br><br>
             <kbd>Shift</kbd>+<kbd>N</kbd> - New File
@@ -111,7 +113,12 @@
     </div>
     <div class="editor-container"></div>
     <div id="statusBar">
-
+        <div style="margin-left: auto; display: inline-flex;">
+            <div class="statusbarItem" id="fileLanguage">Language</div>
+            <div class="statusbarItem">
+                <span id="linenumber">0</span> / <span id="totallines">0</span>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -165,8 +172,12 @@ Yet another web based code editor cos' why not?
     });
     loadMonacoConfig();
     loadLastSession();
+    document.editor.onDidChangeCursorSelection((e)=>{document.getElementById('linenumber').innerHTML=e.selection.positionLineNumber; document.getElementById('totallines').innerHTML=document.editor.getModel().getLineCount() })
+    document.editor.onDidChangeModelLanguage((e)=>{document.getElementById('fileLanguage').innerHTML=e.newLanguage;})
+    document.editor.languageConfigurationService.languageService._encounteredLanguages.forEach((l)=>{document.getElementById('fileLanguage').innerHTML=l;})
   });
 </script>
+
 <script src="static/js/keyboardShortcuts.js"></script>
 
 </html>
