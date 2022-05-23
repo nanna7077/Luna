@@ -175,8 +175,12 @@ function openFileFromLink() {
     document.getElementById("openFromLinkDialog").style.display = 'block';
 }
 
-function triggerFileOpenFromLinkFromDialog() {
-    if (document.getElementById("fileFromLinkText").value.length === 0) {
+function OpenInLunaLinkMaker() {
+    document.getElementById('createOpenInLunaLink').style.display = 'block';
+}
+
+function makeOpenInLunaLinkFromDialog() {
+    if (document.getElementById('createOpenInLunaLinkText').value.length === 0) {
         Toastify({
             text: "Link cannot be empty",
             duration: 3000,
@@ -187,7 +191,48 @@ function triggerFileOpenFromLinkFromDialog() {
         }).showToast();
         return;
     }
-    fetch(document.getElementById("fileFromLinkText").value).then((response) => {
+    var c = window.location.origin + window.location.pathname + '?openUrl=' + encodeURIComponent(document.getElementById('createOpenInLunaLinkText').value);
+    if (document.getElementById('createOpenInLunaLanguageText').value.length !== 0) {
+        c += '&language=' + document.getElementById('createOpenInLunaLanguageText').value;
+    }
+    navigator.clipboard.writeText(c).then(function() {
+        Toastify({
+            text: "Copied link to clipboard",
+            duration: 3000,
+            position: "center",
+            style: {
+                background: "#00FF00"
+            }
+        }).showToast();
+    }, function(err) {
+        Toastify({
+            text: "Could not copy to clipboard. " + err,
+            duration: 3000,
+            position: "center",
+            style: {
+                background: "#ff0033"
+            }
+        }).showToast();
+    })
+    document.getElementById('createOpenInLunaLink').style.display = 'none';
+}
+
+function triggerFileOpenFromLinkFromDialog(link, language) {
+    if (link == undefined) {
+        if (document.getElementById("fileFromLinkText").value.length === 0) {
+            Toastify({
+                text: "Link cannot be empty",
+                duration: 3000,
+                position: "center",
+                style: {
+                    background: "#ff0033"
+                }
+            }).showToast();
+            return;
+        }
+        var link = document.getElementById("fileFromLinkText").value;
+    }
+    fetch(link).then((response) => {
             if (response.status === 200) {
                 return response.text();
             } else {
@@ -196,7 +241,11 @@ function triggerFileOpenFromLinkFromDialog() {
         })
         .then((responseText) => {
             currentTabs.push({ 'content': responseText, 'name': document.getElementById("fileFromLinkText").value.split("/").at(-1) });
-            monaco.editor.setModelLanguage(document.editor.getModel(), getFileType(document.getElementById("fileFromLinkText").value.split("/").at(-1).split(".").at(-1)));
+            if (language == undefined) {
+                monaco.editor.setModelLanguage(document.editor.getModel(), getFileType(document.getElementById("fileFromLinkText").value.split("/").at(-1).split(".").at(-1)));
+            } else {
+                monaco.editor.setModelLanguage(document.editor.getModel(), language);
+            }
             document.editor.setValue(responseText);
             currentTab = currentTabs.length - 1;
             loadTabChanges();
@@ -341,6 +390,15 @@ function showCategory(category) {
         document.getElementById("preferencesBracketPairColorization").checked = document.monacoConfig[`'bracketPairColorization.enabled'`];
     } else {
         return;
+    }
+}
+
+var currentURL = new URL(window.location.href);
+if (currentURL.searchParams.get('openUrl') != null) {
+    if (currentURL.searchParams.get('language') != null) {
+        triggerFileOpenFromLinkFromDialog(decodeURIComponent(currentURL.searchParams.get('openUrl')), currentURL.searchParams.get('language'));
+    } else {
+        triggerFileOpenFromLinkFromDialog(decodeURIComponent(currentURL.searchParams.get('openUrl')));
     }
 }
 

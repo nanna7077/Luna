@@ -24,6 +24,8 @@
                 <a onclick="downloadFile()">Download File <span class="smallText">Ctrl + D</span></a>
                 <a onclick="downloadWorkspace()">Download Workspace</a>
                 <hr>
+                <a onclick="OpenInLunaLinkMaker()">Create 'Open in Luna' Link</a>
+                <hr>
                 <a onclick="renameFile()">Rename File <span class="smallText">F2</span></a>
                 <a onclick="clearWorkspace()">Clear Workspace</a>
                 <a onclick="openPreferences()">Preferences</a>
@@ -110,6 +112,16 @@
         <br>
         <button class="button" onclick="triggerFileOpenFromLinkFromDialog()">Open</button>
         <button class="button" onclick="hideDiv('openFromLinkDialog')">Close</button>
+    </div>
+    <div class="dialog" id="createOpenInLunaLink" style="display: none;">
+        <div class="dialog-title">Create 'Open In Luna' Link</div>
+        <br> URL for file<br>
+        <input class="textInput" id="createOpenInLunaLinkText" autocomplete="off">
+        <br> Language for file<br>
+        <input class="textInput" id="createOpenInLunaLanguageText" autocomplete="off">
+        <br>
+        <button class="button" onclick="makeOpenInLunaLinkFromDialog()">Open</button>
+        <button class="button" onclick="hideDiv('createOpenInLunaLink')">Close</button>
     </div>
     <div class="editor-container"></div>
     <div id="statusBar">
